@@ -69,7 +69,16 @@ export function InstallHint() {
         type="button"
         onClick={dismiss}
         aria-label="إخفاء"
-        style={{ color: 'var(--text-tertiary)', padding: 4, flexShrink: 0 }}
+        style={{
+          color: 'var(--text-tertiary)',
+          width: 40,
+          height: 40,
+          display: 'grid',
+          placeItems: 'center',
+          marginTop: -8,
+          marginInlineEnd: -8,
+          flexShrink: 0,
+        }}
       >
         <Icon name="close" size={18} />
       </button>

@@ -178,26 +178,23 @@ export function BackupPage({
         <CardHeader title="تصدير البيانات" />
         <div className="stack" style={{ gap: 'var(--sp-3)' }}>
           <div className="backup-option">
-            <div>
-              <div className="backup-option__title">نسخة احتياطية كاملة (JSON)</div>
-              <div className="backup-option__desc">
-                كل شيء: العمليات، الفئات، الميزانيات، الأهداف والإعدادات. هذا الملف يستخدم للاستعادة.
-              </div>
+            <div className="backup-option__title">نسخة احتياطية كاملة (JSON)</div>
+            <div className="backup-option__desc">
+              كل شيء: العمليات، الفئات، الميزانيات، الأهداف والإعدادات. هذا هو الملف المستخدم
+              للاستعادة.
             </div>
-            <Button variant="primary" icon="download" onClick={exportJSON} disabled={busy}>
-              تصدير
+            <Button variant="primary" icon="download" block onClick={exportJSON} disabled={busy}>
+              تصدير نسخة احتياطية
             </Button>
           </div>
 
           <div className="backup-option">
-            <div>
-              <div className="backup-option__title">جدول العمليات (CSV)</div>
-              <div className="backup-option__desc">
-                للفتح في Excel أو Numbers. لا يُستخدم للاستعادة.
-              </div>
+            <div className="backup-option__title">جدول العمليات (CSV)</div>
+            <div className="backup-option__desc">
+              للفتح في Excel أو Numbers. لا يُستخدم للاستعادة.
             </div>
-            <Button icon="download" onClick={exportCSV} disabled={busy}>
-              تصدير
+            <Button icon="download" block onClick={exportCSV} disabled={busy}>
+              تصدير جدول العمليات
             </Button>
           </div>
         </div>

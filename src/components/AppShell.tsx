@@ -42,7 +42,13 @@ export function TabBar() {
   );
 }
 
+/** الصفحات التي يكون فيها «إضافة عملية» هو الإجراء الأساسي */
+const FAB_ROUTES = ['/', '/transactions', '/reports'];
+
 export function Fab({ onClick }: { onClick: () => void }) {
+  const { pathname } = useLocation();
+  if (!FAB_ROUTES.includes(pathname)) return null;
+
   return (
     <button type="button" className="fab" onClick={onClick} aria-label="إضافة عملية جديدة">
       <Icon name="plus" size={26} strokeWidth={2.2} />

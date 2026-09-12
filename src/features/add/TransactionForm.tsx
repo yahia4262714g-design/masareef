@@ -46,6 +46,7 @@ export function TransactionForm({
   const [tagsText, setTagsText] = useState((initial?.tags ?? []).join('، '));
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | undefined>(initial?.paymentMethod);
   const [showMore, setShowMore] = useState(false);
+  const [showAllCats, setShowAllCats] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [touched, setTouched] = useState(false);
 
@@ -59,6 +60,21 @@ export function TransactionForm({
     if (visibleCategories.some((c) => c.id === categoryId)) return categoryId;
     return visibleCategories[0]?.id ?? '';
   }, [visibleCategories, categoryId]);
+
+  // نعرض أول صفّين فقط ثم نتيح توسيع القائمة — تقليلًا لطول النموذج
+  const COLLAPSED_COUNT = 7;
+  const shownCategories = useMemo(() => {
+    if (showAllCats) return visibleCategories;
+    const selected = visibleCategories.find((c) => c.id === effectiveCategoryId);
+    const head = visibleCategories.slice(0, COLLAPSED_COUNT);
+    // نضمن ظهور الفئة المختارة حتى لو كانت خارج أول صفّين
+    if (selected && !head.some((c) => c.id === selected.id)) {
+      return [selected, ...head.slice(0, COLLAPSED_COUNT - 1)];
+    }
+    return head;
+  }, [showAllCats, visibleCategories, effectiveCategoryId]);
+
+  const hiddenCount = showAllCats ? 0 : visibleCategories.length - shownCategories.length;
 
   const amountMinor = toMinor(amountText, currency);
   const amountError = touched && amountMinor <= 0 ? 'أدخل مبلغًا أكبر من صفر' : undefined;
@@ -126,7 +142,7 @@ export function TransactionForm({
       <div className="field">
         <span className="field__label">الفئة</span>
         <div className="txform__cats">
-          {visibleCategories.map((c) => (
+          {shownCategories.map((c) => (
             <button
               key={c.id}
               type="button"
@@ -138,6 +154,21 @@ export function TransactionForm({
               <span className="txform__cat-name truncate">{c.name}</span>
             </button>
           ))}
+          {hiddenCount > 0 && (
+            <button
+              type="button"
+              className="txform__cat txform__cat--more"
+              onClick={() => setShowAllCats(true)}
+              aria-label={`عرض ${hiddenCount} فئة إضافية`}
+            >
+              <span className="txform__more-badge">
+                <Icon name="chevron-down" size={18} />
+              </span>
+              <span className="txform__cat-name">
+                <span className="num">+{hiddenCount}</span> فئة
+              </span>
+            </button>
+          )}
         </div>
       </div>
 
