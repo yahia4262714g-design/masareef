@@ -96,30 +96,58 @@ npm run icons     # إعادة توليد أيقونات التطبيق
 
 ## النشر مجانًا 🚀
 
-**الخيار المفضّل: Cloudflare Pages** — مجاني بسخاء، سريع جدًا، HTTPS تلقائي، ونشر مباشر من GitHub.
+المشروع مُعدّ للنشر التلقائي على **GitHub Pages** — ما بتحتاج أي حساب أو خدمة خارجية.
 
-1. ادخل [dash.cloudflare.com](https://dash.cloudflare.com) وسجّل دخول.
-2. اختر **Workers & Pages** ← **Create** ← **Pages** ← **Connect to Git**.
-3. اختر هذا المستودع.
-4. عبّي الإعدادات:
-   - **Framework preset:** `Vite`
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-5. اضغط **Save and Deploy**.
+### كيف يشتغل
 
-بعد دقيقة أو دقيقتين بيعطيك رابط مثل `https://masareef.pages.dev` — افتحه على الآيفون وثبّته.
+في ملف `.github/workflows/deploy.yml`. كل ما ترفع تعديل على فرع `main`:
 
-**التحديث بعدين:** كل ما ترفع تعديل على GitHub، Cloudflare يبني وينشر لحاله. ما في شي تعمله.
+1. GitHub يشغّل الاختبارات ويفحص الأنواع.
+2. لو نجح كل شي، يبني المشروع.
+3. ينشره تلقائيًا على الرابط.
+
+**لو فشلت الاختبارات ما ينشر** — حماية من نشر نسخة مكسورة.
+
+### أول مرة فقط
+
+الغالب إنه يفعّل نفسه تلقائيًا. لو ما اشتغل:
+
+**Settings** ← **Pages** ← تحت **Source** اختر **GitHub Actions** ← احفظ.
+
+بعدها من تبويب **Actions** شغّل **«نشر التطبيق»** يدويًا مرة واحدة.
+
+### الرابط
+
+```
+https://<اسم-حسابك>.github.io/masareef/
+```
+
+تلاقيه كمان في: **Settings** ← **Pages**.
+
+> **ملاحظة:** GitHub Pages المجاني يحتاج المستودع يكون **عامًا (public)**. هذا يكشف الكود فقط — مصاريفك ما بتطلع من جهازك إطلاقًا، ما في سيرفر يستقبلها أصلًا.
 
 <details>
 <summary>بدائل أخرى</summary>
 
-- **Vercel:** نفس السهولة تقريبًا. اربط المستودع واختر إعدادات Vite الافتراضية.
-- **GitHub Pages:** مجاني بس يحتاج إعداد إضافي. إذا نشرت داخل مجلد فرعي (مثل `username.github.io/masareef`)، لازم تبني بالأمر:
-  ```bash
-  set VITE_BASE=/masareef/ && npm run build
-  ```
-  التطبيق يستخدم مسارات نسبية و`HashRouter` فيشتغل صح في الحالتين.
+**Cloudflare Pages** — يشتغل مع المستودعات الخاصة كمان، ويعطي رابطًا أحلى:
+
+1. [dash.cloudflare.com](https://dash.cloudflare.com) ← **Workers & Pages** ← **Create** ← **Pages** ← **Connect to Git**
+2. اختر المستودع، وعبّي: `Vite` / `npm run build` / `dist`
+3. **Save and Deploy**
+
+**Vercel** — نفس السهولة، اربط المستودع واترك إعدادات Vite الافتراضية.
+
+**البناء اليدوي لأي مسار فرعي:**
+
+```bash
+# على Windows
+set VITE_BASE=/اسم-المجلد/ && npm run build
+
+# على Mac/Linux
+VITE_BASE=/اسم-المجلد/ npm run build
+```
+
+التطبيق يستخدم `HashRouter` ومسارات نسبية، فيشتغل صح من أي مجلد.
 
 </details>
 
