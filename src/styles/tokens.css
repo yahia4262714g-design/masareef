@@ -1,0 +1,156 @@
+/* ============================================================
+   مصاريف — نظام الرموز التصميمية (Design Tokens)
+   لا تستخدم ألوانًا مباشرة داخل المكوّنات — استخدم هذه المتغيّرات فقط.
+   ============================================================ */
+
+:root {
+  /* ---------- الوضع الفاتح (افتراضي) ---------- */
+  --bg: #f7f6f3;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f1ec;
+  --surface-3: #e9e8e1;
+  --surface-hover: #eeede7;
+
+  --text-primary: #14150f;
+  --text-secondary: #5c5e54;
+  --text-tertiary: #8b8d82;
+  --text-inverse: #ffffff;
+
+  --border: #e2e1d9;
+  --border-strong: #cfceC4;
+
+  --accent: #4f6340;
+  --accent-hover: #435635;
+  --accent-soft: #e8eee2;
+  --accent-text: #3c4d30;
+  --on-accent: #ffffff;
+
+  --success: #2e7d4f;
+  --success-soft: #e3f1e8;
+  --warning: #9a6b12;
+  --warning-soft: #faf0d9;
+  --danger: #a6332e;
+  --danger-soft: #f9e6e4;
+  --info: #2f5d78;
+  --info-soft: #e4eef4;
+
+  --expense: #a6332e;
+  --income: #2e7d4f;
+
+  --overlay: rgba(20, 21, 15, 0.42);
+  --shadow-sm: 0 1px 2px rgba(20, 21, 15, 0.05);
+  --shadow-md: 0 4px 16px rgba(20, 21, 15, 0.08);
+  --shadow-lg: 0 12px 32px rgba(20, 21, 15, 0.12);
+  --shadow-fab: 0 6px 20px rgba(79, 99, 64, 0.32);
+
+  /* ---------- ألوان الفئات (متناسقة، محايدة، غير صارخة) ---------- */
+  --cat-1: #6b7f5c;
+  --cat-2: #a97b4f;
+  --cat-3: #5b7d8c;
+  --cat-4: #8c6a86;
+  --cat-5: #b2894b;
+  --cat-6: #4f7a63;
+  --cat-7: #97584f;
+  --cat-8: #6f6f8a;
+  --cat-9: #7d8a4f;
+  --cat-10: #8a7059;
+
+  /* ---------- المسافات ---------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-7: 32px;
+  --sp-8: 40px;
+  --sp-9: 56px;
+
+  /* ---------- الزوايا ---------- */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --r-full: 999px;
+
+  /* ---------- الخطوط ---------- */
+  --font: 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fs-xs: 11px;
+  --fs-sm: 13px;
+  --fs-base: 15px;
+  --fs-md: 17px;
+  --fs-lg: 20px;
+  --fs-xl: 26px;
+  --fs-2xl: 34px;
+  --fs-3xl: 42px;
+
+  /* ---------- الحركة ---------- */
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 320ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---------- التخطيط ---------- */
+  --nav-h: 60px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --page-pad: 16px;
+  --max-w: 560px;
+}
+
+/* ---------- الوضع الداكن ---------- */
+:root[data-theme='dark'] {
+  --bg: #0e0e0d;
+  --bg-elevated: #171716;
+  --surface: #171716;
+  --surface-2: #1f1f1d;
+  --surface-3: #282826;
+  --surface-hover: #232321;
+
+  --text-primary: #f2f1ec;
+  --text-secondary: #a3a49b;
+  --text-tertiary: #71736a;
+  --text-inverse: #0e0e0d;
+
+  --border: #2a2a27;
+  --border-strong: #3b3b37;
+
+  --accent: #8fa680;
+  --accent-hover: #9fb591;
+  --accent-soft: #1e241a;
+  --accent-text: #a8bd99;
+  --on-accent: #101410;
+
+  --success: #6fbf8e;
+  --success-soft: #14221a;
+  --warning: #d8ae5c;
+  --warning-soft: #241d0f;
+  --danger: #e3766e;
+  --danger-soft: #251513;
+  --info: #7fb0cc;
+  --info-soft: #121e25;
+
+  --expense: #e3766e;
+  --income: #6fbf8e;
+
+  --overlay: rgba(0, 0, 0, 0.62);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-fab: 0 6px 20px rgba(0, 0, 0, 0.5);
+
+  --cat-1: #9db38c;
+  --cat-2: #cba078;
+  --cat-3: #87a9b8;
+  --cat-4: #b494ad;
+  --cat-5: #d0ab72;
+  --cat-6: #7aa892;
+  --cat-7: #c08880;
+  --cat-8: #9a9ab4;
+  --cat-9: #a8b478;
+  --cat-10: #b39a84;
+}
