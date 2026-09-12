@@ -287,8 +287,27 @@ describe('الوصف', () => {
     expect(r.description).toContain('شاورما');
   });
 
-  it('لا يكرر كلمة الفئة وحدها', () => {
-    const r = parse('صرفت 5 شيكل قهوة');
-    expect(r.description).toBe('');
+  it('لا يكرر كلمة الفئة في الوصف', () => {
+    expect(parse('صرفت 5 شيكل قهوة').description).toBe('');
+    expect(parse('دفعت 45 شيكل على مطعم').description).toBe('');
+  });
+
+  it('يحذف حروف الجر وكلمات الحشو', () => {
+    const r = parse('مبارح صرفت 35 شيكل على مطعم مع صحابي');
+    expect(r.description).not.toContain('علي');
+    expect(r.description).not.toContain('على');
+    expect(r.description).not.toContain('مطعم');
+    expect(r.description).not.toContain('مبارح');
+    expect(r.description).toContain('صحابي');
+  });
+
+  it('يحذف أفعال الصرف من الوصف', () => {
+    const r = parse('اشتريت قميص بـ 80 شيكل');
+    expect(r.description).not.toContain('اشتريت');
+    expect(r.categoryId).toBe('clothes');
+  });
+
+  it('يبقي الوصف فارغًا عند عدم وجود كلمات مفيدة', () => {
+    expect(parse('دفعت 20 شيكل').description).toBe('');
   });
 });

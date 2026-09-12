@@ -31,9 +31,10 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      // 'prompt': لا يُطبَّق التحديث تلقائيًا حتى لا ينقطع عمل المستخدم.
+      // التسجيل يتم يدويًا عبر useRegisterSW داخل UpdatePrompt.
       registerType: 'prompt',
       injectRegister: null,
-      includeAssets: ['icons/*.png', 'fonts/*.woff2', 'favicon.svg'],
       manifest: {
         id: '/',
         name: 'مصاريف',

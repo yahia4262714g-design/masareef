@@ -1,0 +1,152 @@
+/* ---------- الإدخال السريع ---------- */
+.quickadd {
+  position: relative;
+}
+
+.quickadd__field {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-2) var(--sp-3);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.quickadd__field:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.quickadd__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 42px;
+  background: transparent;
+  border: none;
+  padding: 0 var(--sp-1);
+  color: var(--text-primary);
+}
+
+.quickadd__input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.quickadd__input:focus {
+  outline: none;
+}
+
+.quickadd__send {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-md);
+  background: var(--accent);
+  color: var(--on-accent);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+
+.quickadd__send:disabled {
+  opacity: 0.35;
+}
+
+.quickadd__send:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.quickadd__hint {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  margin-top: var(--sp-2);
+  padding-inline-start: var(--sp-1);
+}
+
+/* ---------- بطاقة التأكيد ---------- */
+.parsed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.parsed__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.parsed__amount {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.parsed__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.parsed__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.parsed__row:last-child {
+  border-bottom: none;
+}
+
+.parsed__row-label {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  min-width: 68px;
+}
+
+.parsed__row-value {
+  margin-inline-start: auto;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.parsed__warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  background: var(--warning-soft);
+  color: var(--warning);
+  border-radius: var(--r-md);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.parsed__original {
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+  background: var(--surface-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  line-height: 1.7;
+}
+
+/* ---------- اقتراحات سريعة ---------- */
+.suggestions {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: var(--sp-1);
+}
+
+.suggestions::-webkit-scrollbar {
+  display: none;
+}

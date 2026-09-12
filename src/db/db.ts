@@ -112,12 +112,7 @@ export async function updateSettings(patch: Partial<Settings>): Promise<void> {
 export async function resetAllData(): Promise<void> {
   await db.transaction(
     'rw',
-    db.transactions,
-    db.categories,
-    db.budgets,
-    db.savingsGoals,
-    db.settings,
-    db.appMeta,
+    [db.transactions, db.categories, db.budgets, db.savingsGoals, db.settings, db.appMeta],
     async () => {
       await Promise.all([
         db.transactions.clear(),

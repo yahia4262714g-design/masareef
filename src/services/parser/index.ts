@@ -41,14 +41,20 @@ export function clearParserCache(): void {
   cachedIndex = null;
 }
 
-/** كلمات حشو تُحذف من الوصف النهائي */
-const STOPWORDS = new Set([
-  'على', 'عن', 'في', 'من', 'الى', 'ل', 'ب', 'و', 'يا', 'هاد', 'هاي', 'هذا', 'هذه',
-  'كمان', 'بس', 'شوي', 'كتير', 'تقريبا', 'حوالي', 'تبع', 'مشان', 'عشان', 'لاجل',
-  'اليوم', 'امبارح', 'مبارح', 'امس', 'قبل', 'يوم', 'يومين', 'ايام', 'اسبوع',
-  'صرفت', 'دفعت', 'اشتريت', 'شريت', 'قبضت', 'استلمت', 'ربحت', 'بعت', 'كلفني',
-  'كان', 'صار', 'رحت', 'جبت', 'اخذت', 'حطيت',
-]);
+/**
+ * كلمات حشو تُحذف من الوصف النهائي.
+ * تُمرَّر على التطبيع نفسه المستخدم للنص حتى تتطابق الأشكال
+ * (مثلاً «على» تصبح «علي» بعد توحيد الألف المقصورة).
+ */
+const STOPWORDS = new Set(
+  [
+    'على', 'عن', 'في', 'من', 'الى', 'إلى', 'ل', 'ب', 'و', 'يا', 'هاد', 'هاي', 'هذا', 'هذه',
+    'كمان', 'بس', 'شوي', 'شوية', 'كتير', 'تقريبا', 'حوالي', 'تبع', 'مشان', 'عشان', 'لأجل',
+    'اليوم', 'امبارح', 'مبارح', 'أمس', 'قبل', 'يوم', 'يومين', 'أيام', 'اسبوع', 'أسبوع',
+    'صرفت', 'دفعت', 'اشتريت', 'شريت', 'قبضت', 'استلمت', 'ربحت', 'بعت', 'كلفني',
+    'كان', 'صار', 'رحت', 'جبت', 'أخذت', 'حطيت', 'ع', 'عال', 'الـ',
+  ].map((w) => normalizeArabic(w)),
+);
 
 export function parseArabicTransaction(input: string, ctx: ParserContext): ParsedTransaction {
   const now = ctx.now ?? new Date();
@@ -111,7 +117,7 @@ export function parseArabicTransaction(input: string, ctx: ParserContext): Parse
   if (catMatch?.matchedWord) matched.category = catMatch.matchedWord;
 
   // 6) الوصف: ما تبقّى من كلمات مفيدة
-  const description = buildDescription(catTokens, catMatch?.matchedWord);
+  const description = buildDescription(catTokens, new Set(catMatch?.consumed ?? []));
 
   // 7) الثقة الإجمالية
   const confidence = computeConfidence({
@@ -143,17 +149,15 @@ function pickFallbackCategory(categories: Category[], type: 'expense' | 'income'
   return other?.id ?? pool[0]?.id ?? null;
 }
 
-function buildDescription(tokens: string[], matchedCategoryWord?: string): string {
-  const words = tokens.filter((t) => {
+/** يبني وصفًا من الكلمات المتبقية بعد استبعاد الحشو وكلمة الفئة */
+function buildDescription(tokens: string[], categoryConsumed: Set<number>): string {
+  const words = tokens.filter((t, i) => {
+    if (categoryConsumed.has(i)) return false; // كلمة الفئة لا تتكرر في الوصف
     if (STOPWORDS.has(t)) return false;
     if (/^\d+(\.\d+)?$/.test(t)) return false;
     if (t.length < 2) return false;
     return true;
   });
-
-  // إذا كانت كلمة الفئة هي الوحيدة، لا داعي لتكرارها في الوصف
-  if (words.length === 1 && matchedCategoryWord && words[0] === matchedCategoryWord) return '';
-  if (words.length === 0) return '';
   return words.join(' ');
 }
 

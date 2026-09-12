@@ -1,0 +1,95 @@
+/* ---------- نموذج العملية ---------- */
+.txform {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding-block-start: var(--sp-2);
+}
+
+.txform__amount {
+  position: relative;
+}
+
+.txform__currency {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: var(--sp-4);
+  transform: translateY(-50%);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.txform__cats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: var(--sp-2);
+}
+
+.txform__cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-1);
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+  transition: all var(--dur-fast) var(--ease);
+  min-width: 0;
+}
+
+.txform__cat--active {
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 34%, transparent);
+}
+
+.txform__cat-name {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  width: 100%;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.txform__cat--active .txform__cat-name {
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.txform__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+
+.txform__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: 44px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-radius: var(--r-md);
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.txform__more:active {
+  background: var(--surface-2);
+}
+
+.txform__extra {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding-top: var(--sp-1);
+  animation: slideUp var(--dur) var(--ease-out);
+}
+
+.txform__actions {
+  display: flex;
+  gap: var(--sp-3);
+  padding-top: var(--sp-2);
+}

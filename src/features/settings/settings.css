@@ -1,0 +1,82 @@
+.prose {
+  font-size: var(--fs-sm);
+  line-height: 1.85;
+  color: var(--text-secondary);
+  padding-block: var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.prose strong {
+  color: var(--text-primary);
+}
+
+.prose ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding-inline-start: var(--sp-4);
+}
+
+.prose li {
+  position: relative;
+  padding-inline-start: var(--sp-3);
+}
+
+.prose li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 12px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.prose__note {
+  background: var(--surface-2);
+  padding: var(--sp-3);
+  border-radius: var(--r-md);
+  font-size: var(--fs-xs);
+  line-height: 1.8;
+}
+
+.about-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-2);
+}
+
+.about-logo img {
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--sp-2);
+  padding-block: var(--sp-2);
+}
+
+.day-pick {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  border: 1px solid transparent;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--dur-fast) var(--ease);
+}
+
+.day-pick--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}

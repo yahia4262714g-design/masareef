@@ -1,0 +1,218 @@
+/* ---------- لوحة التحكم ---------- */
+.hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--sp-5) var(--sp-4) var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.hero__label {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.hero__amount {
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+}
+
+.hero__symbol {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.hero__compare {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-2);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.hero__stat-label {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.hero__stat-value {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- بطاقة الرؤية ---------- */
+.insight {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+}
+
+.insight--positive {
+  background: var(--success-soft);
+  border-color: transparent;
+  color: var(--success);
+}
+
+.insight--warning {
+  background: var(--warning-soft);
+  border-color: transparent;
+  color: var(--warning);
+}
+
+.insight--danger {
+  background: var(--danger-soft);
+  border-color: transparent;
+  color: var(--danger);
+}
+
+.insight__icon {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* ---------- الميزانية المصغّرة ---------- */
+.budget-mini {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.budget-mini__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.budget-mini__spent {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.budget-mini__total {
+  font-size: var(--fs-sm);
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.budget-mini__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+}
+
+/* ---------- صف عملية ---------- */
+.tx-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  text-align: start;
+  transition: background var(--dur-fast) var(--ease);
+  min-height: 64px;
+}
+
+.tx-row:active {
+  background: var(--surface-hover);
+}
+
+.tx-row + .tx-row {
+  border-top: 1px solid var(--border);
+}
+
+.tx-row__body {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tx-row__title {
+  font-size: var(--fs-base);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.tx-row__sub {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.tx-row__amount {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.tx-row__amount--expense { color: var(--text-primary); }
+.tx-row__amount--income { color: var(--income); }
+
+/* ---------- مجموعة يوم ---------- */
+.day-group__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-1) var(--sp-2);
+  position: sticky;
+  top: calc(var(--safe-top) + 52px);
+  background: var(--bg);
+  z-index: 10;
+}
+
+.day-group__title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.day-group__total {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}

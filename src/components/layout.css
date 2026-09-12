@@ -1,0 +1,207 @@
+/* ============================================================
+   هيكل التطبيق
+   ============================================================ */
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* ---------- الرأس ---------- */
+.appbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur) var(--ease);
+  padding-top: var(--safe-top);
+}
+
+.appbar--scrolled {
+  border-bottom-color: var(--border);
+}
+
+.appbar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 52px;
+  padding-inline: var(--page-pad);
+  max-width: var(--max-w);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.appbar__title {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.appbar__sub {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+  font-weight: 400;
+  display: block;
+  margin-top: -2px;
+}
+
+/* ---------- المحتوى ---------- */
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+  padding-block-start: var(--sp-4);
+  padding-block-end: calc(var(--nav-h) + var(--safe-bottom) + var(--sp-8));
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  animation: fadeIn var(--dur) var(--ease);
+}
+
+/* ---------- التنقّل السفلي ---------- */
+.tabbar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  backdrop-filter: saturate(180%) blur(18px);
+  border-top: 1px solid var(--border);
+  padding-bottom: var(--safe-bottom);
+}
+
+.tabbar__inner {
+  display: flex;
+  align-items: stretch;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  height: var(--nav-h);
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--text-tertiary);
+  font-size: 10.5px;
+  font-weight: 600;
+  transition: color var(--dur-fast) var(--ease);
+  position: relative;
+  min-width: 0;
+  padding-top: 4px;
+}
+
+.tab--active {
+  color: var(--accent-text);
+}
+
+.tab__icon {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.tab--active .tab__icon {
+  transform: translateY(-1px);
+}
+
+/* ---------- الزر العائم ---------- */
+.fab {
+  position: fixed;
+  inset-inline-end: var(--page-pad);
+  bottom: calc(var(--nav-h) + var(--safe-bottom) + var(--sp-4));
+  z-index: 55;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-fab);
+  transition: transform var(--dur) var(--ease-out), background var(--dur-fast) var(--ease);
+}
+
+.fab:active {
+  transform: scale(0.93);
+}
+
+@media (min-width: 600px) {
+  .fab {
+    inset-inline-end: calc(50% - var(--max-w) / 2 + var(--page-pad));
+  }
+}
+
+/* ---------- شريط تثبيت التطبيق ---------- */
+.install-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
+  border-radius: var(--r-lg);
+}
+
+.install-hint__text {
+  font-size: var(--fs-sm);
+  color: var(--accent-text);
+  line-height: 1.7;
+}
+
+.install-hint__steps {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* ---------- شاشة التحميل الأولى ---------- */
+.boot {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  gap: var(--sp-4);
+  background: var(--bg);
+}
+
+.boot__logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  animation: pop var(--dur-slow) var(--ease-out);
+}
+
+/* ---------- شريط تحديث التطبيق ---------- */
+.update-bar {
+  position: fixed;
+  inset-inline: var(--sp-4);
+  bottom: calc(var(--nav-h) + var(--safe-bottom) + var(--sp-4));
+  z-index: 130;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--fs-sm);
+  max-width: calc(var(--max-w) - var(--sp-8));
+  margin-inline: auto;
+  animation: slideUp var(--dur) var(--ease-out);
+}

@@ -106,9 +106,21 @@ body {
   isolation: isolate;
 }
 
-img,
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* الأيقونات تُستخدم داخل النصوص وداخل flex معًا — inline-block يخدم الحالتين */
 svg {
   max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* الرسوم البيانية كتلية حتى لا تظهر فجوة السطر أسفلها */
+.chart,
+.spark {
   display: block;
 }
 
@@ -182,13 +194,14 @@ hr {
   }
 }
 
-/* ---------- الأرقام: دائمًا LTR وبخط جدولي ---------- */
+/* ---------- الأرقام: دائمًا LTR وبخط جدولي ----------
+   ملاحظة: لا نغيّر display هنا إطلاقًا، لأن هذه الفئة تُستخدم على عناصر
+   سطرية وكتلية معًا — العزل (isolate) وحده كافٍ لضبط اتجاه الأرقام. */
 .num {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1;
   direction: ltr;
   unicode-bidi: isolate;
-  display: inline-block;
 }
 
 /* ---------- أدوات عامة ---------- */

@@ -1,0 +1,150 @@
+/* ---------- التقارير ---------- */
+.period-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-1);
+}
+
+.period-nav button {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.period-nav button:active:not(:disabled) {
+  background: var(--surface-2);
+}
+
+.period-nav button:disabled {
+  opacity: 0.28;
+}
+
+.period-nav__label {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.period-nav__label > span:first-child {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.period-nav__range {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.report-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.report-summary__label {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.report-summary__total {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  margin-block: var(--sp-1);
+}
+
+.report-summary__symbol {
+  font-size: var(--fs-md);
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+
+.mini-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--sp-3);
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  min-width: 0;
+}
+
+.mini-stat__label {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.mini-stat__value {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.report-note {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-top: var(--sp-3);
+}
+
+/* ---------- التوفير ---------- */
+.saving-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-4) 0 var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+
+.saving-total strong {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--success);
+  font-variant-numeric: tabular-nums;
+}
+
+.saving-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.saving-row__name {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.saving-row__current {
+  font-size: var(--fs-xs);
+  color: var(--text-tertiary);
+}
+
+.saving-row__save {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--success);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
